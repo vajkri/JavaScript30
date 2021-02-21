@@ -1,0 +1,11 @@
+{
+  "name": "javascript-30-vajkri",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "prettier": "^2.2.1"
+  },
+  "scripts": {
+    "prettier": "prettier --loglevel error --write **/*.{html,css,json}"
+  }
+}
