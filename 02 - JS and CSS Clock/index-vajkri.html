@@ -1,107 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>JS + CSS Clock</title>
-    <style>
-      html {
-        background: linear-gradient(to right, #000046, #1cb5e0);
+	<head>
+		<meta charset="UTF-8" />
+		<title>JS + CSS Clock</title>
+		<style>
+			html {
+				background: linear-gradient(to right, #000046, #1cb5e0);
 
-        font-family: "Helvetica Neue", sans-serif;
-        font-size: 10px;
-        text-align: center;
-      }
+				font-family: 'Helvetica Neue', sans-serif;
+				font-size: 10px;
+				text-align: center;
+			}
 
-      body {
-        display: flex;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
+			body {
+				display: flex;
+				align-items: center;
+				min-height: 100vh;
+				margin: 0;
 
-        font-size: 2rem;
-      }
+				font-size: 2rem;
+			}
 
-      .clock {
-        width: 30rem;
-        height: 30rem;
-        margin: 50px auto;
-        padding: 2rem;
+			.clock {
+				width: 30rem;
+				height: 30rem;
+				margin: 50px auto;
+				padding: 2rem;
 
-        position: relative;
+				position: relative;
 
-        border: 20px solid white;
-        border-radius: 50%;
-        box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef,
-          inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
+				border: 20px solid white;
+				border-radius: 50%;
+				box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef, inset 0 0 10px black,
+					0 0 10px rgba(0, 0, 0, 0.2);
 
-        transform: rotate(90deg); /* so hands point upwards by default */
-      }
+				transform: rotate(90deg); /* so hands point upwards by default */
+			}
 
-      .clock-face {
-        width: 100%;
-        height: 100%;
+			.clock-face {
+				width: 100%;
+				height: 100%;
 
-        position: relative;
+				position: relative;
 
-        transform: translateY(
-          -3px
-        ); /* account for the height of the clock hands */
-      }
+				transform: translateY(-3px); /* account for the height of the clock hands */
+			}
 
-      .hand {
-        width: 50%;
-        height: 6px;
+			.hand {
+				width: 50%;
+				height: 6px;
 
-        position: absolute;
-        top: 50%;
+				position: absolute;
+				top: 50%;
 
-        background: black;
-        transform-origin: 100%;
-      }
-      .hand.minute-hand {
-        height: 4px;
-      }
-      .hand.second-hand {
-        height: 2px;
-      }
-    </style>
-  </head>
+				background: black;
+				transform-origin: 100%;
+			}
+			.hand.minute-hand {
+				height: 4px;
+			}
+			.hand.second-hand {
+				height: 2px;
+			}
+		</style>
+	</head>
 
-  <body>
-    <div class="clock">
-      <div class="clock-face">
-        <div class="hand hour-hand"></div>
-        <div class="hand minute-hand"></div>
-        <div class="hand second-hand"></div>
-      </div>
-    </div>
+	<body>
+		<div class="clock">
+			<div class="clock-face">
+				<div class="hand hour-hand"></div>
+				<div class="hand minute-hand"></div>
+				<div class="hand second-hand"></div>
+			</div>
+		</div>
 
-    <script>
-      const step = 360 / 60;
-      const hourStep = 360 / 12;
+		<script>
+			const step = 360 / 60
+			const hourStep = 360 / 12
 
-      const getTime = () => {
-        const now = new Date();
+			const getTime = () => {
+				const now = new Date()
 
-        let hour = now.getHours();
-        hour = hour % 12; // transform hour to 12-hour time
-        hour = hour ? hour : 12; // the hour '0' should be '12'
-        const minute = now.getMinutes();
-        const second = now.getSeconds();
+				let hour = now.getHours()
+				hour = hour % 12 // transform hour to 12-hour time
+				hour = hour ? hour : 12 // the hour '0' should be '12'
+				const minute = now.getMinutes()
+				const second = now.getSeconds()
 
-        transformHand(".hour-hand", hour, hourStep);
-        transformHand(".minute-hand", minute, step);
-        transformHand(".second-hand", second, step);
-      };
+				transformHand('.hour-hand', hour, hourStep)
+				transformHand('.minute-hand', minute, step)
+				transformHand('.second-hand', second, step)
+			}
 
-      const transformHand = (elem, time, step) => {
-        document.querySelector(elem).style.transform = `rotate(${
-          time * step
-        }deg)`;
-      };
+			const transformHand = (elem, time, step) => {
+				document.querySelector(elem).style.transform = `rotate(${time * step}deg)`
+			}
 
-      getTime();
-      setInterval(getTime, 1000);
-    </script>
-  </body>
+			getTime()
+			setInterval(getTime, 1000)
+		</script>
+	</body>
 </html>
